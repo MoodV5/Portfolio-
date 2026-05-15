@@ -1,0 +1,214 @@
+:root {
+    --parchment-color: #f4e8d0;
+    --text-color: #3b2f21;
+    --highlight: #d14949;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    font-family: 'Noto Serif JP', 'Cinzel', serif;
+    color: var(--text-color);
+}
+
+#map-container {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    position: relative;
+    user-select: none;
+    overflow: hidden;
+}
+
+#map-container:active {
+    cursor: grabbing;
+}
+
+#map {
+    position: absolute;
+    width: 2000px;
+    height: 2000px;
+    transform-origin: 0 0;
+}
+
+#map-bg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    filter: sepia(0.4) brightness(0.9) contrast(1.1);
+}
+
+.landmark {
+    position: absolute;
+    transform: translate(-50%, -100%) scale(var(--inverse-scale, 1));
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.05s linear;
+    z-index: 10;
+}
+
+.landmark:hover {
+    transform: translate(-50%, -100%) scale(calc(var(--inverse-scale, 1) * 1.1));
+}
+
+.pin {
+    width: 24px;
+    height: 24px;
+    background-color: var(--highlight);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    margin: 0 auto 8px auto;
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: rotate(-45deg) translate(0, 0);
+    }
+
+    50% {
+        transform: rotate(-45deg) translate(-5px, -5px);
+    }
+}
+
+.pin::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: var(--parchment-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.label {
+    background: rgba(244, 232, 208, 0.9);
+    padding: 6px 12px;
+    border: 1px solid #c2b196;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* Modals */
+#modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+#modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 90%;
+    max-width: 600px;
+    background: var(--parchment-color);
+    background-image: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.08"/></svg>');
+    padding: 40px;
+    border-radius: 8px;
+    border: 2px solid #a38c64;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(163, 140, 100, 0.2);
+    z-index: 100;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    opacity: 1;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#modal::-webkit-scrollbar {
+    width: 8px;
+}
+
+#modal::-webkit-scrollbar-thumb {
+    background-color: #a38c64;
+    border-radius: 4px;
+}
+
+#modal.hidden {
+    opacity: 0;
+    transform: translate(-50%, -40%) scale(0.9);
+    pointer-events: none;
+}
+
+#close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+#close-modal:hover {
+    color: var(--highlight);
+}
+
+#modal-content h2 {
+    margin-top: 0;
+    border-bottom: 2px solid #c2b196;
+    padding-bottom: 10px;
+    font-family: 'Cinzel', 'Noto Serif JP', serif;
+}
+
+#modal-content ul {
+    line-height: 1.8;
+}
+
+.works-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.work-card {
+    background: rgba(255, 255, 255, 0.4);
+    padding: 15px;
+    border: 1px solid #c2b196;
+    border-radius: 4px;
+}
+
+.work-card h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 600px) {
+    .works-grid {
+        grid-template-columns: 1fr;
+    }
+}

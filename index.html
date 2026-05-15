@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宇都 翔太 | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Noto+Serif+JP:wght@400..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="map-container">
+        <div id="map">
+            <img src="assets/map.png" alt="Fantasy Map Background" draggable="false" id="map-bg">
+
+            <div class="landmark" style="top: 30%; left: 30%;" data-target="intro">
+                <div class="pin"></div>
+                <div class="label">自己紹介</div>
+            </div>
+
+            <div class="landmark" style="top: 50%; left: 20%;" data-target="career">
+                <div class="pin"></div>
+                <div class="label">経歴</div>
+            </div>
+
+            <div class="landmark" style="top: 55%; left: 55%;" data-target="works">
+                <div class="pin"></div>
+                <div class="label">作品紹介</div>
+            </div>
+
+            <div class="landmark" style="top: 35%; left: 70%;" data-target="skills">
+                <div class="pin"></div>
+                <div class="label">スキル</div>
+            </div>
+
+            <div class="landmark" style="top: 75%; left: 75%;" data-target="certifications">
+                <div class="pin"></div>
+                <div class="label">資格</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-overlay" class="hidden"></div>
+    <div id="modal" class="hidden">
+        <button id="close-modal">&times;</button>
+        <div id="modal-content"></div>
+    </div>
+
+    <template id="tpl-intro">
+        <h2>自己紹介 (Self Introduction)</h2>
+        <p>初めまして、宇都 翔太です。ファンタジーの世界観とプログラミングを愛するエンジニアです。<br>新しい技術に常に興味を持ち、使いやすく美しいUI/UXの実現を目指しています。</p>
+    </template>
+    <template id="tpl-career">
+        <h2>経歴 (Career)</h2>
+        <ul>
+            <li><strong>2020年:</strong> プログラミングの学習を開始</li>
+            <li><strong>2025年 4月:</strong> 東京電子専門学校　入学</li>
+        </ul>
+    </template>
+    <template id="tpl-works">
+        <h2>自身の作品紹介 (Works)</h2>
+        <div class="works-grid">
+            <div class="work-card">
+                <h3>ゲームマップ風ポートフォリオ</h3>
+                <p>現在ご覧いただいているサイトです。ドラッグ操作でマップを探索する体験を重視しました。</p>
+            </div>
+            <div class="work-card">
+                <h3>チャリティースロットアプリ</h3>
+                <p>寄付を行うことで確率が変動するスロットアプリのプロトタイプ。</p>
+            </div>
+        </div>
+    </template>
+    <template id="tpl-skills">
+        <h2>スキル (Skills)</h2>
+        <p>フロントエンドからバックエンドまで幅広く対応可能です。</p>
+        <ul class="skills-list">
+            <li>HTML / CSS / JavaScript</li>
+            <li>React / Next.js / Node.js</li>
+            <li>Python</li>
+            <li>Java</li>
+        </ul>
+    </template>
+    <template id="tpl-certifications">
+        <h2>資格 (Certifications)</h2>
+        <ul>
+            <li>基本情報技術者試験</li>
+            <li>情報セキュリティマネジメント</li>
+            <li>Java SE 11 Silver</li>
+            <li>TOEIC L&R TEST 825点 </li>
+            <li>応用情報処理技術者試験 取得予定</li>
+        </ul>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
